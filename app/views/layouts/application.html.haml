@@ -1,0 +1,18 @@
+!!! XHTML
+%html
+  %head
+    %title Foursquare API
+    = stylesheet_link_tag 'application'
+    %script{:src=>"http://www.google.com/jsapi", :type=>"text/javascript"}
+    %script{:type=>"text/javascript"}
+      google.load("chrome-frame", "1.0.2");
+      google.load("jquery", "1.6.4");
+      google.load("jqueryui", "1.8.16");
+      google.load("webfont", "1.0.22");
+    = javascript_include_tag "init"
+  %body
+    #page
+      %h1#title
+        = link_to "Wair", root_path
+        
+      = yield

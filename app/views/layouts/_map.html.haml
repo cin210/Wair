@@ -1,0 +1,27 @@
+- places = places.delete_if{|p| p.location.lat.nil? || p.location.lng.nil?}
+- if places.size > 0
+	- center = [places.first.location.lat,places.first.location.lng]
+	#google-map
+	%script{:src => "http://maps.google.com/maps/api/js?sensor=false"}
+	%script{:type => "text/javascript"}
+		function init(){
+		var options = {
+		zoom: #{(places.size == 1)? '15' : '15'},
+		center: new google.maps.LatLng(#{center[0]}, #{center[1]}),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+		var map = new google.maps.Map(document.getElementById("google-map"), options);
+		- for place in places
+			var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(#{place.location.lat}, #{place.location.lng}),
+			map: map,
+			title: "#{place.name}"
+			});
+		}
+		function loadScript(){
+		var script = document.createElement("script");
+		script.type = "text/javascript";
+		script.src = "http://maps.google.com/maps/api/js?sensor=false&key=#{ApiController::GOOGLE_API_KEY}&callback=init";
+		document.body.appendChild(script);
+		}
+		window.onload = loadScript;

@@ -1,0 +1,20 @@
+Logged in as 
+%b=link_to current_user.first_name, user_api_index_path
+
+= form_tag nil, :method => :get do
+	= label_tag "Venue Name:"
+	= text_field_tag "name", params[:name]
+	= submit_tag "search"
+	
+%h1 Nearby Places
+- if @venues
+	%table
+		- @venues.each do |venue|
+			%tr
+				%td= venue.name
+				%td= venue.users_count
+				
+				%td= venue.location.lat
+				%td= venue.location.lng
+	#map-column
+		= render :partial => "layouts/map", :locals => { :places => @venues }

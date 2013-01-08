@@ -1,0 +1,13 @@
+defaults: &defaults
+    app_id: XFK4RQZW5V1QKL0LSKXEJFA1J0O4AUOPF5TUZO0S15ILWNWN
+    
+    app_secret: AKECCWT1H0UZG4GUIMENKL22EHEETWUZJZUMKAH5FNWZZVRW
+    
+development:
+    <<: *defaults
+    
+test:
+    <<: *defaults
+    
+production:
+    <<: *defaults
