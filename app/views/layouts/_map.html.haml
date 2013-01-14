@@ -1,12 +1,13 @@
 - places = places.delete_if{|p| p.location.lat.nil? || p.location.lng.nil?}
 - if places.size > 0
-	- center = [places.first.location.lat,places.first.location.lng]
+	- coordinates = places.collect { |p| [p.location.lat, p.location.lng] }
+	- center = Geocoder::Calculations.geographic_center(coordinates)
 	#google-map
 	%script{:src => "http://maps.google.com/maps/api/js?sensor=false"}
 	%script{:type => "text/javascript"}
 		function init(){
 		var options = {
-		zoom: #{(places.size == 1)? '15' : '15'},
+		zoom: #{(places.size == 1)? '16' : '15'},
 		center: new google.maps.LatLng(#{center[0]}, #{center[1]}),
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 		}
@@ -15,7 +16,7 @@
 			var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(#{place.location.lat}, #{place.location.lng}),
 			map: map,
-			title: "#{place.name}"
+			title: "#{place.name}",
 			});
 		}
 		function loadScript(){

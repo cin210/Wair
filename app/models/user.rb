@@ -1,2 +1,2 @@
-class User < ActiveRercord::Base
+class User < ActiveRecord::Base
 end

@@ -1,0 +1,20 @@
+
+	
+%h1 
+	=@venue.name
+	
+- if @checkins
+	="We found #{@checkins.count} checkins here now"
+	%br	
+
+- if @users
+	="We found #{@users.count} users here now"
+	- @users.each do |user| 
+		=image_tag(user.photo)
+	%br	
+	
+="In theory there are #{@venue.here_now_count} people here now"
+%br			
+- if @photos
+	- @photos.each do |pic|
+		=image_tag(pic.square_300_url)

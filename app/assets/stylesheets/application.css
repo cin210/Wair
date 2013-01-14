@@ -4,17 +4,30 @@ body,html{
 	margin: 0px;
 	padding: 0px;
 }
-
+#content{
+	position: relative;
+	
+	background: white;
+}
+#list-column{
+	width:30%;
+	background: white;
+	position: absolute;
+	overflow: auto;
+	z-index: 2;
+	height:100%;
+}
 #map-column{
+	left:30%;
 	height:100%;
 }
 
 #google-map{
 	top: 0;
 	left: 0;
+	z-index:0;
 	position:absolute;
 	float:left;
-	z-index: -999;
 	height:100%;
 	width:100%;
 }

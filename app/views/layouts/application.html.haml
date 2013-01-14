@@ -1,7 +1,7 @@
 !!! XHTML
 %html
   %head
-    %title Foursquare API
+    %title Wair
     = stylesheet_link_tag 'application'
     %script{:src=>"http://www.google.com/jsapi", :type=>"text/javascript"}
     %script{:type=>"text/javascript"}
@@ -12,7 +12,4 @@
     = javascript_include_tag "init"
   %body
     #page
-      %h1#title
-        = link_to "Wair", root_path
-        
       = yield
